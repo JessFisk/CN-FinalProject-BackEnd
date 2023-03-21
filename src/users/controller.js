@@ -60,8 +60,23 @@ const loginUser = async (req, res) => {
     }
 };
 
+// Asynchronous function for logging out a user
+const logoutUser = (req, res) => {
+    // Clear the authentication information from the request object
+    req.authCheck = null;
+    req.user = null;
+
+    // Send a success response with a message
+    res.status(200).json({
+        message: "success",
+        data: "User successfully logged out",
+    });
+};
+
+
 // Exporting the registerUser and loginUser functions for use in other modules
 module.exports = {
     registerUser,
     loginUser,
+    logoutUser,
 }
