@@ -3,7 +3,8 @@ const express = require("express");
 
 const port = process.env.PORT || 5001;
 
-// const User = require("/users/model");
+const User = require("/users/model");
+
 const app = express();
 
 app.use(express.json());
