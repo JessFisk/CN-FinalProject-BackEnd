@@ -3,4 +3,4 @@ const userRouter = Router();
 
 userRouter.post("/users/register", registerUser);
 
-modile.exports = userRouer;
+module.exports = userRouter;
