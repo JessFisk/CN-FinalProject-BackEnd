@@ -60,7 +60,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-// Asynchronous function for logging out a user
+// Function for logging out a user
 const logoutUser = (req, res) => {
     // Clear the authentication information from the request object
     req.authCheck = null;
@@ -73,10 +73,22 @@ const logoutUser = (req, res) => {
     });
 };
 
+// Asynchronous function for logging in a user
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.findAll();
+        res.status(200).json(users);
+    } catch (error) {
+        // Handling error when querying database
+        res.status(500).json({ errorMessage: "Server error", error: error });
+    }
+};
+
 
 // Exporting the registerUser and loginUser functions for use in other modules
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
+    getAllUsers,
 }
