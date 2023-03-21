@@ -15,8 +15,7 @@ const app = express();
 app.use(express.json());
 
 const syncTables = () => {
-    
-    
+       
     User.sync();
 
 }
@@ -29,5 +28,6 @@ app.get("/health", (req, res) =>
     res.status(200).json({ message: "API is working" }));
     
     app.listen(port, () => {
+        syncTables();
     console.log(`Server is listening on port ${port}`)
 });

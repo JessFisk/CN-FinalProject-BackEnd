@@ -2,9 +2,9 @@ const User = require("./model")
 const jwt = require("jsonwebtoken")
 
 
-const register = async (req, res) => {
+const registerUser = async (req, res) => {
     try {
-        const registerUser = await User.create(req.body)
+        const register = await User.create(req.body)
         res.status(201).json({
             message: "success", user: { username: req.body.username, email: req.body.email },
         });
@@ -14,5 +14,5 @@ const register = async (req, res) => {
 }
 
 module.exports = {
-    register,
+    registerUser,
 }
