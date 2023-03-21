@@ -2,6 +2,7 @@ const User = require("./model")
 const jwt = require("jsonwebtoken")
 
 
+
 const registerUser = async (req, res) => {
     try {
         const register = await User.create(req.body)
@@ -13,12 +14,16 @@ const registerUser = async (req, res) => {
     }
 };
 
+
+
+
+
 const getAllUsers = async (req, res) => {
     try {
-        if(!req.authCheck){
-            const error = new Error("Not Authorised");
-            res.status(401).json({ errorMessage: error.message, error: error });
-        }
+        // if(!req.authCheck){
+        //     const error = new Error("Not Authorised");
+        //     res.status(401).json({ errorMessage: error.message, error: error });
+        // }
 
         const users = await User.findAll();
 
@@ -32,7 +37,26 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+
+
+
+const updateUserName = async (req, res) => {
+    try {
+      await User.update({ username: req.body.updateValue }, { where: { username: req.body.username } });
+        res.status(201).json({ message: "success", username: updateUserName });
+      
+    } catch (error) {
+        res.status(500).send({ errorMessage: error.message });
+    }
+  };
+
+
+
+
+
+
 module.exports = {
     registerUser,
-    getAllUsers
+    getAllUsers,
+    updateUserName,
 }

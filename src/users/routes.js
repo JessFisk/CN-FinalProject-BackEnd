@@ -5,13 +5,12 @@ const userRouter = Router();
 const { hashPass, comparePass, tokenCheck } = require("../middleware")
 
 
-const { registerUser, getAllUsers } = require("./controller");
+const { registerUser, getAllUsers, updateUserName } = require("./controller");
 
 
 userRouter.post("/users/register", hashPass, registerUser);
-
 userRouter.get("/users/getallusers", tokenCheck, getAllUsers)
-
+userRouter.put("/users/updateusername", tokenCheck, updateUserName);
 
 
 
