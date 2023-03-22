@@ -22,3 +22,4 @@ const User = connection.define(
 )
 
 module.exports = User;
+
