@@ -31,7 +31,7 @@ app.get("/health", (req, res) =>
     res.status(200).json({ message: "API is working" }));
     
     app.listen(port, () => {
-        syncTables();
+        // syncTables();
     console.log(`Server is listening on port ${port}`)
 });
 
