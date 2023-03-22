@@ -104,7 +104,10 @@ const updateUserName = async (req, res) => {
 
 
 
-
+//   {
+//     "username": "123",
+//     "updateValue": "dave"
+//   }
 
 
 
@@ -114,5 +117,4 @@ module.exports = {
     loginUser,
     getAllUsers,
     updateUserName,
-
 }
