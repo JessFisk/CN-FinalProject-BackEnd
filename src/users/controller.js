@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken")
 
 const registerUser = async (req, res) => {
     try {
-        const User = await User.create(req.body)
+        const register = await User.create(req.body)
         res.status(201).json({
             message: "success", user: { username: req.body.username, email: req.body.email },
         });
@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-        if(!req.authCheck){
+        if(req.authCheck){
             res.status(201).json({ message: "success", user: {
                 username: req.authCheck.username,
                 email: req.authCheck.email,

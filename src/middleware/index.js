@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
+const User = require("../users/model");
 const jwt = require("jsonwebtoken");
-
 const saltRounds = process.env.SALT_ROUNDS;
 
 const hashPass = async (req, res, next) => {
@@ -62,8 +62,6 @@ const tokenCheck = async (req, res, next) => {
         res.status(501).json({ errorMessage: error.message, error: error })
     }
 };
-
-const User = require("../users/model")
 
 module.exports = {
     hashPass,
