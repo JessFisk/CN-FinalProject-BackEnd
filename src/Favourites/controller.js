@@ -27,7 +27,7 @@ const getAllFavourites = async (req, res) => {
         const favMeals = await Favourite.findAll({where: { user: req.params.user },
         include: Favourite,
     });
-        res.status(200).json({ message: "success", books: favMeals });
+        res.status(200).json({ message: "success", meals: favMeals });
     }
     catch (error) {
         res.status(501).json({ errorMessage: error.message, error: error });
