@@ -25,10 +25,6 @@ const registerUser = async (req, res) => {
     }
 };
 
-
-
-
-
 // Asynchronous function for logging in a user
 const loginUser = async (req, res) => {
     try {
@@ -65,11 +61,6 @@ const loginUser = async (req, res) => {
     }
 };
 
-
-
-
-
-
 // Function for logging out a user
 const logoutUser = (req, res) => {
     // Clear the authentication information from the request object
@@ -83,27 +74,7 @@ const logoutUser = (req, res) => {
     });
 };
 
-// Asynchronous function for logging in a user
-const getAllUsers = async (req, res) => {
-    try {
-        const users = await User.findAll();
-        res.status(200).json(users);
-    } catch (error) {
-        // Handling error when querying database
-        res.status(500).json({ errorMessage: "Server error", error: error });
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
+// Asynchronous function for get all Users
 const getAllUsers = async (req, res) => {
     try {
         if(!req.authCheck){
@@ -129,14 +100,7 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-
-
-
-
-
-
-
-
+// Asynchronous function for Update User Name
 
 const updateUserName = async (req, res) => {
     try {
@@ -147,14 +111,6 @@ const updateUserName = async (req, res) => {
         res.status(500).send({ errorMessage: error.message });
     }
   };
-
-
-
-
-
-
-
-
 
 // Exporting the registerUser and loginUser functions for use in other modules
 module.exports = {
