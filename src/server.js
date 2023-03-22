@@ -5,10 +5,10 @@ const port = process.env.PORT || 5001;
 
 
 
-const User = require("./users/model");
+// const User = require("./users/model");
 
 
-const userRouter = require("./users/routes");
+// const userRouter = require("./users/routes");
 
 
 
@@ -17,13 +17,13 @@ const app = express();
 
 app.use(express.json());
 
-const syncTables = () => {
+// const syncTables = () => {
        
-    User.sync();
+//     User.sync();
 
-}
+// }
 
-app.use(userRouter);
+// app.use(userRouter);
 
 
 
@@ -34,3 +34,4 @@ app.get("/health", (req, res) =>
         syncTables();
     console.log(`Server is listening on port ${port}`)
 });
+
