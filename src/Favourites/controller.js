@@ -1,1 +1,2 @@
 
+getAllFavourites, addFavourite
