@@ -4,8 +4,11 @@ const userRouter = Router();
 
 
 
-const { hashPass, comparePass, tokenCheck } = require("../middleware")
-const { registerUser, getAllUsers, loginUser, logoutUser } = require("./controller");
+
+
+const { hashPass, comparePass, tokenCheck } = require("../middleware");
+const { registerUser, loginUser, getAllUsers, updateUserName, logoutUser  } = require("./controller");
+
 
 
 
@@ -20,6 +23,8 @@ userRouter.put("/users/updateusername", tokenCheck, updateUserName);
 
 
 
+
 // Exporting the userRouter object for use in other modules
 
 module.exports = userRouter;
+

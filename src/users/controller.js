@@ -3,12 +3,14 @@ const User = require("./model")
 const jwt = require("jsonwebtoken")
 
 
+
 // Asynchronous function for registering a new user
 const registerUser = async (req, res) => {
     try {
         // Creating a new user in the database using data from the request body
-        const User = await User.create(req.body)
+        const register = await User.create(req.body)
         // Sending a success response with a message and user data
+
         res.status(201).json({
             message: "success",
             user: { username: req.body.username, email: req.body.email },
@@ -25,15 +27,19 @@ const registerUser = async (req, res) => {
     }
 };
 
+
+
+
+
 // Asynchronous function for logging in a user
 const loginUser = async (req, res) => {
     try {
+
         // Checking if the user is authenticated
-        if (!req.authCheck) {
-            res.status(401).json({
-                message: "Authentication Fail", user: {
-                    username: req.authCheck.username,
-                    email: req.authCheck.email,
+         if(req.authCheck){
+            res.status(201).json({ message: "success", user: {
+                username: req.authCheck.username,
+                email: req.authCheck.email,
                 },
             });
             return;
@@ -74,6 +80,10 @@ const logoutUser = (req, res) => {
     });
 };
 
+
+
+
+
 // Asynchronous function for get all Users
 const getAllUsers = async (req, res) => {
     try {
@@ -112,10 +122,24 @@ const updateUserName = async (req, res) => {
     }
   };
 
+
+
+//   {
+//     "username": "123",
+//     "updateValue": "dave"
+//   }
+
+
+
+
+
 // Exporting the registerUser and loginUser functions for use in other modules
+
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
     getAllUsers,
+    updateUserName,
 }
+
