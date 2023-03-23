@@ -24,6 +24,10 @@ const addFavourite = async (req, res) => {
 
 const getAllFavourites = async (req, res) => {
     try {
+        if (!req.authCheck) {
+            const error = new Error("User is not authorised");
+            res.status(401).json({ errorMessage: error.message, error: error });
+        }
         const favMeals = await Favourite.findAll({where: { user: req.params.user },
         include: Favourite,
     });
