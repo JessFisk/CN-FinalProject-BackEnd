@@ -2,12 +2,14 @@
 const User = require("./model")
 const jwt = require("jsonwebtoken")
 
+
 // Asynchronous function for registering a new user
 
 const registerUser = async (req, res) => {
     try {
         // Creating a new user in the database using data from the request body
-        const User = await User.create(req.body)
+        const register = await User.create(req.body)
+
         // Sending a success response with a message and user data
         res.status(201).json({
             message: "success",
@@ -26,11 +28,14 @@ const registerUser = async (req, res) => {
 };
 
 
+
+
+
 // Asynchronous function for logging in a user
 const loginUser = async (req, res) => {
     try {
         // Checking if the user is authenticated
-        if (!req.authCheck) {
+        if (req.authCheck) {
             res.status(401).json({
                 message: "Authentication Fail", user: {
                     username: req.authCheck.username,
@@ -62,6 +67,24 @@ const loginUser = async (req, res) => {
     }
 };
 
+// Function for logging out a user
+const logoutUser = (req, res) => {
+    // Clear the authentication information from the request object
+    req.authCheck = null;
+    req.user = null;
+
+    // Send a success response with a message
+    res.status(200).json({
+        message: "success",
+        data: "User successfully logged out",
+    });
+};
+
+
+
+
+
+// Asynchronous function for get all Users
 
 const getAllUsers = async (req, res) => {
     try {
@@ -88,6 +111,12 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+
+
+
+
+// Asynchronous function for Update User Name
+
 const updateUserName = async (req, res) => {
     try {
       await User.update({ username: req.body.updateValue }, { where: { username: req.body.username } });
@@ -99,9 +128,16 @@ const updateUserName = async (req, res) => {
   };
 
 
+
+
+
+
+// Exporting the registerUser and loginUser functions for use in other modules
+
 module.exports = {
     registerUser,
     loginUser,
+    logoutUser,
     getAllUsers,
     updateUserName,
 
