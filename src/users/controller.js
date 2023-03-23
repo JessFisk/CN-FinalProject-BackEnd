@@ -67,6 +67,7 @@ const loginUser = async (req, res) => {
     }
 };
 
+
 // Function for logging out a user
 const logoutUser = (req, res) => {
     // Clear the authentication information from the request object
@@ -87,33 +88,30 @@ const logoutUser = (req, res) => {
 // Asynchronous function for get all Users
 const getAllUsers = async (req, res) => {
     try {
-        if(!req.authCheck){
-            res.status(201).json({ message: "success", user: {
-                username: req.authCheck.username,
-                email: req.authCheck.email,
-            },
-        });
-        return;
-    };
+        if (!req.authCheck) {
+            const error = new Error("User is not authorised");
+            res.status(401).json({ errorMessage: error.message, error: error });
+        }
+        const users = await User.findAll();
+        for (let user of users) { user.password = ""; }
+        res.status(200).json({ message: "success", users: users });
+    }
+    catch (error) {
+        res.status(501).json({ errorMessage: error.message, error: error });
 
-    const token = await jwt.sign({ id: req.user.id}, process.env.SECRET_KEY);
-
-    res.status(201).json({ message: "success",
-        user: {
-            username: req.user.username,
-            email: req.user.email,
-            token: token,
-        },
-    });
-    } catch (error) {
-        res.status(501).json({ errorMessage: error.message, error: error })
     }
 };
 
-// Asynchronous function for Update User Name
 
+
+
+// Asynchronous function for Update User Name
 const updateUserName = async (req, res) => {
     try {
+        if (!req.authCheck) {
+            const error = new Error("User is not authorised");
+            res.status(401).json({ errorMessage: error.message, error: error });
+        }
       await User.update({ username: req.body.updateValue }, { where: { username: req.body.username } });
         res.status(201).json({ message: "success", username: updateUserName });
       
