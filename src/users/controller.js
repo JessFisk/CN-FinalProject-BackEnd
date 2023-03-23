@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken")
 const registerUser = async (req, res) => {
     try {
         // Creating a new user in the database using data from the request body
-        const User = await User.create(req.body)
+        const User = await registerUser.create(req.body)
         // Sending a success response with a message and user data
         res.status(201).json({
             message: "success",
