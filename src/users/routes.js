@@ -19,7 +19,7 @@ userRouter.post("/users/loginuser", comparePass, loginUser)
 userRouter.post("/users/logout", logoutUser)
 userRouter.get("/users/getallusers", tokenCheck, getAllUsers)
 userRouter.put("/users/updateusername", tokenCheck, updateUserName);
-
+userRouter.get("/users/authcheck", tokenCheck, loginUser)
 
 
 

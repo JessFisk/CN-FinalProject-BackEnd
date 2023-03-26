@@ -29,8 +29,6 @@ const registerUser = async (req, res) => {
 
 
 
-
-
 // Asynchronous function for logging in a user
 const loginUser = async (req, res) => {
     try {
@@ -68,6 +66,7 @@ const loginUser = async (req, res) => {
 };
 
 
+
 // Function for logging out a user
 const logoutUser = (req, res) => {
     // Clear the authentication information from the request object
@@ -80,8 +79,6 @@ const logoutUser = (req, res) => {
         data: "User successfully logged out",
     });
 };
-
-
 
 
 
@@ -101,7 +98,6 @@ const getAllUsers = async (req, res) => {
 
     }
 };
-
 
 
 
@@ -126,8 +122,6 @@ const updateUserName = async (req, res) => {
 //     "username": "123",
 //     "updateValue": "dave"
 //   }
-
-
 
 
 
