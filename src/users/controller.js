@@ -125,6 +125,23 @@ const updateUserName = async (req, res) => {
 
 
 
+
+// Asynchronous function for Delete User
+const deleteUser = async (req, res) => {
+    try {
+        if (!req.authCheck) {
+            const error = new Error("User is not authorised");
+            res.status(401).json({ errorMessage: error.message, error: error });
+        }
+        const deletedUser = await User.destroy({ where: { id: req.authCheck.id } });
+        res.status(200).json({ message: "success", data: deletedUser });
+    } catch (error) {
+        res.status(500).json({ errorMessage: error.message, error: error });
+    }
+};
+
+
+
 // Exporting the registerUser and loginUser functions for use in other modules
 
 module.exports = {
@@ -133,5 +150,6 @@ module.exports = {
     logoutUser,
     getAllUsers,
     updateUserName,
+    deleteUser,
 }
 
