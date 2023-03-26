@@ -29,8 +29,6 @@ const registerUser = async (req, res) => {
 
 
 
-
-
 // Asynchronous function for logging in a user
 const loginUser = async (req, res) => {
     try {
@@ -68,6 +66,7 @@ const loginUser = async (req, res) => {
 };
 
 
+
 // Function for logging out a user
 const logoutUser = (req, res) => {
     // Clear the authentication information from the request object
@@ -80,8 +79,6 @@ const logoutUser = (req, res) => {
         data: "User successfully logged out",
     });
 };
-
-
 
 
 
@@ -101,7 +98,6 @@ const getAllUsers = async (req, res) => {
 
     }
 };
-
 
 
 
@@ -129,6 +125,7 @@ const updateUserName = async (req, res) => {
 
 
 
+
 // Asynchronous function for Delete User
 const deleteUser = async (req, res) => {
     try {
@@ -142,6 +139,7 @@ const deleteUser = async (req, res) => {
         res.status(500).json({ errorMessage: error.message, error: error });
     }
 };
+
 
 
 // Exporting the registerUser and loginUser functions for use in other modules
