@@ -133,7 +133,7 @@ const deleteUser = async (req, res) => {
             const error = new Error("User is not authorised");
             res.status(401).json({ errorMessage: error.message, error: error });
         }
-        const deletedUser = await User.destroy({ where: { id: req.authCheck.id } });
+        const deletedUser = await User.destroy({ where: { username: req.body.username } });
         res.status(200).json({ message: "success", data: deletedUser });
     } catch (error) {
         res.status(500).json({ errorMessage: error.message, error: error });
