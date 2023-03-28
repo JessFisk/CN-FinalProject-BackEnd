@@ -7,7 +7,7 @@ const userRouter = Router();
 
 
 const { hashPass, comparePass, tokenCheck } = require("../middleware");
-const { registerUser, loginUser, getAllUsers, updateUserName, logoutUser  } = require("./controller");
+const { registerUser, loginUser, getAllUsers, updateUserName, logoutUser, deleteUser  } = require("./controller");
 
 
 
@@ -20,7 +20,7 @@ userRouter.post("/users/logout", logoutUser)
 userRouter.get("/users/getallusers", tokenCheck, getAllUsers)
 userRouter.put("/users/updateusername", tokenCheck, updateUserName);
 userRouter.get("/users/authcheck", tokenCheck, loginUser)
-userRouter.post("/users/deleteUser", tokenCheck, deleteUser);
+userRouter.delete("/users/deleteuser", tokenCheck, deleteUser);
 
 
 
