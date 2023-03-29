@@ -116,15 +116,18 @@ const updateUserName = async (req, res) => {
     }
   };
 
-
-
-//   {
-//     "username": "123",
-//     "updateValue": "dave"
-//   }
-
-
-
+const updateUserEmail = async (req, res) => {
+    try {
+        if (!req.authCheck) {
+            const error = new Error("User is not authorised");
+            res.status(401).json({errorMessage: error.message, error:error});
+        }
+        await User.update({email: req.body.updateValue}, {where: {username: req.body.username} });
+            res.status(201).json ({message: "success", email: updateEmail})
+    } catch (error) {
+        res.status(500).send({errorMessage: error.message});
+    }
+};
 
 // Asynchronous function for Delete User
 const deleteUser = async (req, res) => {
@@ -150,6 +153,7 @@ module.exports = {
     logoutUser,
     getAllUsers,
     updateUserName,
+    updateUserEmail,
     deleteUser,
 }
 
