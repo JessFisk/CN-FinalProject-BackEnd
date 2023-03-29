@@ -5,11 +5,12 @@ const connection = require("../db/connection");
 const Favourite = connection.define(
     "Favourite",
     {
-        favourite: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            unique: true,
+        username: {
+            type: DataTypes.STRING,
         },
+        mealId:{
+            type: DataTypes.NUMBER,
+        }
     },
 
     

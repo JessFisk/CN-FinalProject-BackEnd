@@ -4,13 +4,13 @@ const favouriteRouter = Router();
 
 
 
-const {  tokenCheck } = require("../middleware")
-const { getAllFavourites, addFavourite } = require("./controller");
+// const {  tokenCheck } = require("../middleware")
+// const { getAllFavourites, addFavourite } = require("./controller");
 
 
 
-favouriteRouter.put("/favourites/addfavourite", tokenCheck, addFavourite)
-favouriteRouter.get("/favourites/getallfavourites", tokenCheck, getAllFavourites)
+// favouriteRouter.put("/favourites/addfavourite", tokenCheck, addFavourite)
+// favouriteRouter.get("/favourites/getallfavourites", tokenCheck, getAllFavourites)
 
 
 
