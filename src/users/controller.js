@@ -15,6 +15,7 @@ const registerUser = async (req, res) => {
             message: "success",
             user: { username: req.body.username, email: req.body.email },
         });
+        return
     } catch (error) {
         // Handling specific database errors and sending an appropriate response
         if (error.name === 'SequelizeValidationError') {
@@ -55,6 +56,7 @@ const loginUser = async (req, res) => {
                 token: token,
             },
         });
+        return
     } catch (error) {
         // Handling different types of errors separately and sending an appropriate response
         if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
@@ -116,6 +118,8 @@ const updateUserName = async (req, res) => {
     }
   };
 
+
+
 const updateUserEmail = async (req, res) => {
     try {
         if (!req.authCheck) {
@@ -128,6 +132,8 @@ const updateUserEmail = async (req, res) => {
         res.status(500).send({errorMessage: error.message});
     }
 };
+
+
 
 // Asynchronous function for Delete User
 const deleteUser = async (req, res) => {
